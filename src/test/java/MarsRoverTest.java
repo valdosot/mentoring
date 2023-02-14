@@ -4,69 +4,69 @@ import org.junit.jupiter.api.Test;
 
 public class MarsRoverTest {
     private MarsRover marsRover;
-    private int initial_position_x;
-    private int initial_position_y;
+    private int initialPositionX;
+    private int initialPositionY;
 
     @BeforeEach
     void setUp() {
-        marsRover = new MarsRover();
-        initial_position_x = 1;
-        initial_position_y = 1;
+        marsRover = new MarsRover(4, 4);
+        initialPositionX = 1;
+        initialPositionY = 1;
     }
 
     @Test
-    void posX_Plus_One_Test() {
-        int movement_route_x = 1;
-        int movement_route_y = 0;
+    void posXPlusOneTest() {
+        int movementRouteX = 1;
+        int movementRouteY = 0;
 
-        int wished_target_position_x = 2;
-        int wished_target_position_y = 1;
+        int wishedTargetPositionX = 2;
+        int wishedTargetPositionY = 1;
 
-        String[][] surface = marsRover.marsSurface(initial_position_x, initial_position_y, movement_route_x, movement_route_y);
+        String[][] surface = marsRover.marsSurface(initialPositionX, initialPositionY, movementRouteX, movementRouteY);
 
-        Assertions.assertEquals("I", surface[initial_position_x - 1][initial_position_y - 1].trim());
-        Assertions.assertEquals("D", surface[wished_target_position_x - 1][wished_target_position_y - 1].trim());
+        Assertions.assertEquals("I", surface[initialPositionX - 1][initialPositionY - 1].trim());
+        Assertions.assertEquals("D", surface[wishedTargetPositionX - 1][wishedTargetPositionY - 1].trim());
     }
 
     @Test
-    void posX_Minus_One_Test() {
-        int movement_route_x = -1;
-        int movement_route_y = 0;
+    void posXMinusOneTest() {
+        int movementRouteX = -1;
+        int movementRouteY = 0;
 
-        int wished_target_position_x = 4;
-        int wished_target_position_y = 1;
+        int wishedTargetPositionX = 4;
+        int wishedTargetPositionY = 1;
 
-        String[][] surface = marsRover.marsSurface(initial_position_x, initial_position_y, movement_route_x, movement_route_y);
+        String[][] surface = marsRover.marsSurface(initialPositionX, initialPositionY, movementRouteX, movementRouteY);
 
-        Assertions.assertEquals("I", surface[initial_position_x - 1][initial_position_y - 1].trim());
-        Assertions.assertEquals("D", surface[wished_target_position_x - 1][wished_target_position_y - 1].trim());
+        Assertions.assertEquals("I", surface[initialPositionX - 1][initialPositionY - 1].trim());
+        Assertions.assertEquals("D", surface[wishedTargetPositionX - 1][wishedTargetPositionY - 1].trim());
     }
 
     @Test
-    void posY_Plus_One_Test() {
-        int movement_route_x = 0;
-        int movement_route_y = 1;
+    void posYPlusOneTest() {
+        int movementRouteX = 0;
+        int movementRouteY = 1;
 
-        int wished_target_position_x = 1;
-        int wished_target_position_y = 2;
+        int wishedTargetPositionX = 1;
+        int wishedTargetPositionY = 2;
 
-        String[][] surface = marsRover.marsSurface(initial_position_x, initial_position_y, movement_route_x, movement_route_y);
+        String[][] surface = marsRover.marsSurface(initialPositionX, initialPositionY, movementRouteX, movementRouteY);
 
-        Assertions.assertEquals("I", surface[initial_position_x - 1][initial_position_y - 1].trim());
-        Assertions.assertEquals("D", surface[wished_target_position_x - 1][wished_target_position_y - 1].trim());
+        Assertions.assertEquals("I", surface[initialPositionX - 1][initialPositionY - 1].trim());
+        Assertions.assertEquals("D", surface[wishedTargetPositionX - 1][wishedTargetPositionY - 1].trim());
     }
 
     @Test
-    void posY_Minus_One_Test() {
-        int movement_route_x = 0;
-        int movement_route_y = -1;
+    void posYMinusOneTest() {
+        int movementRouteX = 0;
+        int movementRouteY = -1;
 
-        int wished_target_position_x = 1;
-        int wished_target_position_y = 4;
+        int wishedTargetPositionX = 1;
+        int wishedTargetPositionY = 4;
 
-        String[][] surface = marsRover.marsSurface(initial_position_x, initial_position_y, movement_route_x, movement_route_y);
+        String[][] surface = marsRover.marsSurface(initialPositionX, initialPositionY, movementRouteX, movementRouteY);
 
-        Assertions.assertEquals("I", surface[initial_position_x - 1][initial_position_y - 1].trim());
-        Assertions.assertEquals("D", surface[wished_target_position_x - 1][wished_target_position_y - 1].trim());
+        Assertions.assertEquals("I", surface[initialPositionX - 1][initialPositionY - 1].trim());
+        Assertions.assertEquals("D", surface[wishedTargetPositionX - 1][wishedTargetPositionY - 1].trim());
     }
 }

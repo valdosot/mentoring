@@ -1,42 +1,65 @@
 import java.util.Arrays;
 
 public class MarsRover {
-    public String[][] marsSurface(int posIni_x, int posIni_y, int posDes_x, int posDes_y) {
-        String[][] surface = new String[4][4];
-        //Se rellena la matriz que representa la superficie
-        for (int x = 0; x < 4; x++) {
-            for (int y = 0; y < 4; y++) {
-                surface[x][y] = " º";
+    private final String[][] surface;
+    private final int sizeX;
+    private final int sizeY;
+
+    public MarsRover(int sizeX, int sizeY) {
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
+        surface = new String[sizeX][sizeY];
+    }
+
+    public String[][] marsSurface(int posIniX, int posIniY, int posDesX, int posDesY) {
+
+        buildSurface();
+        markInitialPosition(posIniX, posIniY);
+        markFinalPosition(posIniX, posIniY, posDesX, posDesY);
+        printMatrix();
+        return surface;
+    }
+
+    private void buildSurface() {
+        for (int x = 0; x < sizeX; x++) {
+            for (int y = 0; y < sizeY; y++) {
+                this.surface[x][y] = " º";
             }
         }
+    }
 
-        //Se marca la posición inicial I
-        surface[posIni_x - 1][posIni_y - 1] = " I";
+    private void markInitialPosition(int posIniX, int posIniY) {
+        surface[posIniX - 1][posIniY - 1] = " I";
+    }
 
-        //Se calcula donde será la posición de destino x
-        int dest_x = (posIni_x + posDes_x) - 1;
-        if(dest_x == 4) dest_x = 1;
-        if(dest_x == -1) dest_x = 3;
+    private void markFinalPosition(int posIniX, int posIniY, int posDesX, int posDesY) {
+        int destX = getDestX(posIniX, posDesX);
+        int destY = getDestY(posIniY, posDesY);
+        surface[destX][destY] = " D";
+    }
 
-        //Se calcula donde será la posición de destino y
-        int dest_y = (posIni_y + posDes_y) - 1;
-        if(dest_y == 4) dest_y = 1;
-        if(dest_y == -1) dest_y = 3;
+    private int getDestX(int posIniX, int posDesX) {
+        int destX = (posIniX + posDesX) - 1;
+        if (destX == sizeX) destX = 1;
+        if (destX == -1) destX = sizeX - 1;
+        return destX;
+    }
 
-        //Se marca la posición de destino D
-        surface[dest_x][dest_y] = " D";
+    private int getDestY(int posIniY, int posDesY) {
+        int destY = (posIniY + posDesY) - 1;
+        if (destY == sizeY) destY = 1;
+        if (destY == -1) destY = sizeY - 1;
+        return destY;
+    }
 
-        //Se prepara el print para visualizar la matriz que representa la superficie
-        String[] arrY = new String[4];
-        for (int j = 0; j < 4; j++) {
+    private void printMatrix() {
+        String[] arrY = new String[sizeY];
+        for (int j = 0; j < sizeY; j++) {
             arrY[j] = "Y" + (j + 1);
         }
-        System.out.println("    " + Arrays.toString(arrY).substring(1, 15));
+        System.out.println("   " + Arrays.toString(arrY));
 
         int i = 1;
-        for (String x[] : surface) {
-            System.out.println("X" + i++ + " " + Arrays.toString(x));
-        }
-        return surface;
+        for (var x : surface) System.out.println("X" + i++ + " " + Arrays.toString(x));
     }
 }
